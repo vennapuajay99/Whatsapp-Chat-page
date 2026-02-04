@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WhatsApp Chat Page Clone</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e5ddd5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .chat-container {
+      width: 100%;
+      max-width: 400px;
+      height: 600px;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+    }
+    .chat-header {
+      background-color: #075e54;
+      color: white;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
+      background-color: #e5ddd5;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAkFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////+mPvZ7AAAALHRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJygpKissLS4f2ZBBAAAAq0lEQVQ4y9XSwQ7CMAwFUEECFSVB7f//s6am9sh1JuKwd0Hc9Q0ZxMgwtQnUsk4F0zPKEliEieJHvoXxND/MkkNSwGLWazfRwUUtJkbIsg1yKHhRMIwnJcHMSIpPCD1Etp6KqAg9KYwM0zdpPbNm0BEjYQKnZxbxONxHx4tXUmkUS72pBeNwG+trfMS/F9Kb0jb0v63ljFwQeMnzPzReE68HgAAAABJRU5ErkJggg==");
+      background-repeat: repeat;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .message {
+      max-width: 70%;
+      padding: 10px 14px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      animation: fadeIn 0.3s ease-in-out;
+      word-wrap: break-word;
+    }
+    .sent {
+      align-self: flex-end;
+      background-color: #dcf8c6;
+    }
+    .received {
+      align-self: flex-start;
+      background-color: #fff;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+      background-color: #f0f0f0;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+    }
+    .chat-input button {
+      background-color: #075e54;
+      color: white;
+      border: none;
+      padding: 0 16px;
+      margin-left: 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .chat-input button:hover {
+      background-color: #0a7b6f;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">WhatsApp Chat Page Clone</div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message received">Hey!</div>
+      <div class="message sent">Hey there! How's it going?</div>
+      <div class="message received">All good, working on something exciting!</div>
+      <div class="message sent">Tell me more!</div>
+      <div class="message received">Just learning to build a WhatsApp UI 😄</div>
+      <div class="message sent">Woah! Looks amazing already 🔥</div>
+      <div class="message received">Haha thanks! Adding some cool features too.</div>
+      <div class="message sent">You should make it public once done.</div>
+      <div class="message received">Yep, planning to add it to GitHub soon.</div>
+      <div class="message sent">Great! Share the link with me then.</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="messageInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById("chatMessages");
+    const messageInput = document.getElementById("messageInput");
+
+    function sendMessage() {
+      const text = messageInput.value.trim();
+      if (text === "") return;
+
+      const messageBubble = document.createElement("div");
+      messageBubble.className = "message sent";
+      messageBubble.textContent = text;
+      chatMessages.appendChild(messageBubble);
+      messageInput.value = "";
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      setTimeout(() => {
+        const replies = [
+          "Sounds good!",
+          "Tell me more!",
+          "That's interesting 😄",
+          "Cool stuff!",
+          "Haha nice one!",
+          "Keep going!"
+        ];
+        const replyText = replies[Math.floor(Math.random() * replies.length)];
+        const replyBubble = document.createElement("div");
+        replyBubble.className = "message received";
+        replyBubble.textContent = replyText;
+        chatMessages.appendChild(replyBubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1000);
+    }
+
+    messageInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
+</body>
+</html>
