@@ -1,152 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WhatsApp Chat UI</title>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Smart WhatsApp Chat UI</title>
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #e5ddd5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh; /* FIXED */
-      padding: 10px;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    .chat-container {
-      width: 100%;
-      max-width: 400px;
-      height: 600px;
-      background-color: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-    }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #e5ddd5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
 
-    .chat-header {
-      background-color: #075e54;
-      color: white;
-      padding: 15px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      text-align: center;
-    }
+.chat-container {
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
 
-    .chat-messages {
-      flex: 1;
-      padding: 15px;
-      background-color: #e5ddd5;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+.chat-header {
+  background: #075e54;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+}
 
-    .message {
-      max-width: 70%;
-      padding: 10px 14px;
-      border-radius: 15px;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      animation: fadeIn 0.3s ease-in-out;
-      word-wrap: break-word;
-    }
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #e5ddd5;
+}
 
-    .sent {
-      align-self: flex-end;
-      background-color: #dcf8c6;
-    }
+.message {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease-in-out;
+}
 
-    .received {
-      align-self: flex-start;
-      background-color: #fff;
-    }
+.sent {
+  align-self: flex-end;
+  background: #dcf8c6;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.received {
+  align-self: flex-start;
+  background: white;
+}
 
-    .chat-input {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #ccc;
-      background-color: #f0f0f0;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .chat-input input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 20px;
-      outline: none;
-    }
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background: #f0f0f0;
+}
 
-    .chat-input button {
-      background-color: #075e54;
-      color: white;
-      border: none;
-      padding: 0 16px;
-      margin-left: 10px;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-  </style>
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+}
+
+.chat-input button {
+  background: #075e54;
+  color: white;
+  border: none;
+  padding: 0 16px;
+  margin-left: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="chat-container">
-    <div class="chat-header">WhatsApp Chat UI</div>
+<div class="chat-container">
+  <div class="chat-header">Smart Chat Bot</div>
 
-    <div class="chat-messages" id="chatMessages">
-      <div class="message received">Hey!</div>
-      <div class="message sent">Hey there! How's it going?</div>
-      <div class="message received">All good, working on something exciting!</div>
-      <div class="message sent">Tell me more!</div>
-    </div>
-
-    <div class="chat-input">
-      <input type="text" id="messageInput" placeholder="Type a message..." />
-      <button onclick="sendMessage()">Send</button>
-    </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="message received">Hey! 👋</div>
+    <div class="message received">I am your smart chat bot 🤖</div>
   </div>
 
-  <script>
-    const chatMessages = document.getElementById("chatMessages");
-    const messageInput = document.getElementById("messageInput");
+  <div class="chat-input">
+    <input type="text" id="messageInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
 
-    function sendMessage() {
-      const text = messageInput.value.trim();
-      if (!text) return;
+<script>
+const chatMessages = document.getElementById("chatMessages");
+const messageInput = document.getElementById("messageInput");
 
-      const msg = document.createElement("div");
-      msg.className = "message sent";
-      msg.textContent = text;
-      chatMessages.appendChild(msg);
+const replies = {
+  greeting: ["Hey! 👋","Hello! 😄","Hi there!","Heyyy!","Hi, how are you?"],
+  question: ["Good question 🤔","Let me think...","That's interesting!","Tell me more!","Hmm..."],
+  happy: ["That's awesome! 🎉","Niceee 😃","Love that!","Superb!","Great to hear!"],
+  sad: ["Oh no 🥺","Stay strong 💪","I'm here for you ❤️","Things will get better","Don't worry"],
+  default: [
+    "Ohhh interesting 👀","Nice nice 😄","Haha okay!","Got it 👍",
+    "Seriously? 😮","Sounds good!","Alright 😌","Cool!","Okayyy","Hmm nice!"
+  ]
+};
 
-      messageInput.value = "";
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+function random(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
+}
 
-      setTimeout(() => {
-        const reply = document.createElement("div");
-        reply.className = "message received";
-        reply.textContent = "Nice! 😄";
-        chatMessages.appendChild(reply);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }, 800);
-    }
+function getReply(text){
+  text = text.toLowerCase();
 
-    messageInput.addEventListener("keydown", e => {
-      if (e.key === "Enter") sendMessage();
-    });
-  </script>
+  if(text.match(/hi|hello|hey/)) return random(replies.greeting);
+  if(text.includes("?")) return random(replies.question);
+  if(text.match(/happy|great|awesome|love|super/)) return random(replies.happy);
+  if(text.match(/sad|bad|upset|angry|cry/)) return random(replies.sad);
+  return random(replies.default);
+}
+
+function sendMessage(){
+  const text = messageInput.value.trim();
+  if(!text) return;
+
+  const userMsg = document.createElement("div");
+  userMsg.className = "message sent";
+  userMsg.textContent = text;
+  chatMessages.appendChild(userMsg);
+
+  messageInput.value = "";
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  setTimeout(()=>{
+    const botMsg = document.createElement("div");
+    botMsg.className = "message received";
+    botMsg.textContent = getReply(text);
+    chatMessages.appendChild(botMsg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 700);
+}
+
+messageInput.addEventListener("keydown", e=>{
+  if(e.key === "Enter") sendMessage();
+});
+</script>
 
 </body>
 </html>
